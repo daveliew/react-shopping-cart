@@ -1,13 +1,154 @@
+body,
+#root {
+  height: 100%;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  color: #333333;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App {
+  display: flex;
+  height: 100%;
+}
+
+.items :first-child,
+.summary :first-child {
+  margin-top: 0;
+}
+.items,
+.summary {
+  height: 100%;
+}
+
+.summary {
+  background: #f7f7f7;
+  flex: 1;
+  padding: 1em;
+  border-left: 1px solid #d6d6d6;
+}
+
+.summary > div {
+  margin-bottom: 0.5em;
+  font-size: 1.1em;
+  display: flex;
+}
+
+.summary > hr:first-of-type {
+  margin-top: 1em;
+}
+
+.summary > hr:last-of-type {
+  margin-bottom: 1em;
+}
+
+.summary > div > small {
+  padding-left: 0.5em;
+  line-height: 1.5;
+}
+
+.right {
+  margin-left: auto;
+  align-self: flex-end;
+  display: inline-block;
+}
+
+.red {
+  color: #ce0000;
+}
+
+h2 {
+  font-size: 2em;
+}
+h3 {
+  font-size: 1.5em;
+  margin: 0.75em 0;
+}
+
+hr {
+  border: none;
+  border-bottom: 1px solid #d6d6d6;
+}
+
+h2 span {
+  font-weight: normal;
+}
+.items {
+  flex: 2;
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  flex-grow: 0;
+}
+
+.half {
+  flex: 1;
+  display: flex;
+}
+
+.circle {
+  border: 1px solid #333;
+  border-radius: 100%;
+  height: 1em;
+  width: 1em;
+  text-align: center;
+  line-height: 0.9em;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.pad-left {
+  padding-left: 0.5em;
+}
+.pad-right {
+  padding-right: 0.5em;
+}
+
+.item hr {
+  width: 100%;
+}
+
+.item {
+  position: relative;
+  padding-left: 90px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1em;
+  margin-bottom: 2em;
+  flex-grow: 0;
+}
+
+.item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+a {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.8em;
+  padding: 0.5em;
+  display: inline-block;
+}
+
+.checkout {
+  background: #ce0000;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  font-size: 1em;
+  align-self: flex-end;
+  margin-left: auto;
+  margin-bottom: 1em;
 }
