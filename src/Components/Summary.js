@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const Summary = ({ tax, subTotal, total, totalQuantity }) => {
+const Summary = ({ subTotal, totalQuantity, displayTotal }) => {
+  const TAX_RATE = 0.07;
+  const [total, setTotal] = useState(subTotal * (1 + TAX_RATE));
+  const [tax, setTax] = useState(subTotal * TAX_RATE);
+
+  const sumTotal = (subTotal, tax) => {
+    let result = subTotal + tax;
+    setTotal(result);
+    displayTotal(result);
+  };
+
+  useEffect(() => {
+    setTax(subTotal * TAX_RATE);
+    sumTotal(subTotal, tax);
+  }, [subTotal]);
+
   return (
     <div className="summary">
       <h3>Order Summary</h3>

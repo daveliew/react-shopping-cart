@@ -4,7 +4,7 @@ import Summary from "./Components/Summary";
 import itemsInCart from "./Data/itemsInCart";
 
 const App = () => {
-  const TAX_RATE = 0.07;
+  const [fetchTotal, setFetchTotal] = useState(0);
   const startingQty = itemsInCart
     .map((item) => {
       return item.quantityInCart;
@@ -20,28 +20,27 @@ const App = () => {
     .reduce((sum, cost) => {
       return sum + cost;
     });
-
   const [cartObj, setCartObj] = useState({
-    tax: startingCost * TAX_RATE,
     subTotal: startingCost,
-    total: startingCost * (1 + TAX_RATE),
     totalQuantity: startingQty,
   });
 
-  const getCartStatus = (cartItem) => {
+  const getCartStatus = (newQty, newCost) => {
     setCartObj({
-      tax: cartItem.cost * TAX_RATE,
-      subTotal: cartItem.cost,
-      total: cartItem.cost * (1 + TAX_RATE),
-      totalQuantity: cartItem.quantityInCart,
+      subTotal: cartObj.subTotal + newCost,
+      totalQuantity: cartObj.totalQuantity + newQty,
     });
+  };
+
+  const displayTotal = (amt) => {
+    setFetchTotal(amt);
   };
 
   return (
     <div className="App">
       <div className="items">
         <h2>
-          Total: <span>{cartObj.total.toFixed(2)}</span>
+          Total: <span>{fetchTotal.toFixed(2)}</span>
         </h2>
         <div className="half right">
           <a href="#" className="checkout">
@@ -56,10 +55,9 @@ const App = () => {
         />
       </div>
       <Summary
-        tax={cartObj.tax}
         subTotal={cartObj.subTotal}
-        total={cartObj.total}
         totalQuantity={cartObj.totalQuantity}
+        displayTotal={displayTotal}
       />
     </div>
   );

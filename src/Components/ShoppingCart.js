@@ -8,10 +8,15 @@ const ShoppingCart = ({
   startingCost,
   startingQty,
 }) => {
-  const [quantity, setQuantity] = useState(startingQty);
-  const [subTotal, setSubTotal] = useState(startingCost);
-
+  const [qty, setQty] = useState(startingQty);
+  const [cost, setCost] = useState(startingCost);
   const [cart, setCart] = useState(startingCart);
+
+  // const calcCart = (index) => {
+  //   setQty(prevState => prevState +1)
+  //   setQty(prevState => prevState + startingCart[index].cost)
+
+  // };
 
   const addItem = (index) => {
     let newArr = [...cart];
@@ -19,7 +24,7 @@ const ShoppingCart = ({
     newArr[index].quantityInCart += 1;
     setCart(newArr);
     console.log(newArr);
-    // getCartStatus(newArr[index]);
+    getCartStatus(1, startingCart[index].cost);
   };
 
   const removeItem = (subTotal) => {
@@ -66,4 +71,24 @@ export default ShoppingCart;
 //   let newPrice = (cart[index].cost += subTotal);
 //   newArr[index] = { ...newArr[index], cost: newPrice };
 //   setCart(newArr);
+// };
+
+// const calcCart = (updatedCart) => {
+//   let newQty = updatedCart
+//     .map((item) => {
+//       return item.quantityInCart;
+//     })
+//     .reduce((sum, qty) => {
+//       return sum + qty;
+//     });
+
+//   let newCost = updatedCart
+//     .map((item) => {
+//       return item.cost;
+//     })
+//     .reduce((sum, cost) => {
+//       return sum + cost;
+//     });
+//   console.log(newQty, newCost);
+//   getCartStatus(newQty, newCost);
 // };
