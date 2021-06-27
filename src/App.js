@@ -21,14 +21,14 @@ const App = () => {
       return sum + cost;
     });
   const [cartObj, setCartObj] = useState({
-    subTotal: startingCost,
     totalQuantity: startingQty,
+    subTotal: startingCost,
   });
 
   const getCartStatus = (newQty, newCost) => {
     setCartObj({
-      subTotal: cartObj.subTotal + newCost,
       totalQuantity: cartObj.totalQuantity + newQty,
+      subTotal: cartObj.subTotal + newCost,
     });
   };
 
@@ -49,7 +49,6 @@ const App = () => {
         </div>
         <ShoppingCart
           getCartStatus={getCartStatus}
-          startingCart={itemsInCart}
           startingCost={startingCost}
           startingQty={startingQty}
         />

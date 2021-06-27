@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 const CartItem = (props) => {
+  const [cost, setCost] = useState(props.cost);
   const handleAdd = () => {
     props.addItem(props.id);
   };

@@ -1,37 +1,26 @@
 import React, { useState } from "react";
 import itemsInCart from "../Data/itemsInCart";
+
 import CartItem from "./CartItem";
 
-const ShoppingCart = ({
-  getCartStatus,
-  startingCart,
-  startingCost,
-  startingQty,
-}) => {
-  const [qty, setQty] = useState(startingQty);
-  const [cost, setCost] = useState(startingCost);
-  const [cart, setCart] = useState(startingCart);
-
-  // const calcCart = (index) => {
-  //   setQty(prevState => prevState +1)
-  //   setQty(prevState => prevState + startingCart[index].cost)
-
-  // };
+const ShoppingCart = ({ getCartStatus, startingCost, startingQty }) => {
+  const [cart, setCart] = useState(itemsInCart);
 
   const addItem = (index) => {
     let newArr = [...cart];
-    newArr[index].cost = newArr[index].cost + itemsInCart[index].cost;
-    newArr[index].quantityInCart += 1;
+    let currCost = newArr[index].cost;
+    let currQty = newArr[index].quantityInCart;
+
+    currCost += itemsInCart[index].cost;
+    currQty += 1;
+    newArr[index] = { ...newArr[index], quantityInCart: currQty };
+    newArr[index] = { ...newArr[index], cost: currCost };
     setCart(newArr);
-    console.log(newArr);
-    getCartStatus(1, startingCart[index].cost);
   };
 
   const removeItem = (subTotal) => {
     if (cart.quantityInCart > 1) {
       console.log("ok");
-      // setQuantity((prevState) => prevState - 1);
-      // setSubTotal((prevState) => prevState - subTotal);
     }
   };
 
