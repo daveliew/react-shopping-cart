@@ -3,7 +3,7 @@ import itemsInCart from "../Data/itemsInCart";
 
 import CartItem from "./CartItem";
 
-const ShoppingCart = ({ startingCost, startingQty, calcCart }) => {
+const ShoppingCart = ({ calcCart }) => {
   const [cart, setCart] = useState(itemsInCart);
 
   const addItem = (index) => {

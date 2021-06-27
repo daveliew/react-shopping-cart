@@ -5,16 +5,19 @@ const Summary = ({ subTotal, totalQuantity, displayTotal }) => {
   const [total, setTotal] = useState(subTotal * (1 + TAX_RATE));
   const [tax, setTax] = useState(subTotal * TAX_RATE);
 
-  const sumTotal = (subTotal, tax) => {
-    let result = subTotal + tax;
-    setTotal(result);
-    displayTotal(result);
-  };
+  // const sumTotal = (subTotal, tax) => {
+  //   let result = subTotal + tax;
+  //   setTotal(result);
+  //   displayTotal(result);
+  // };
 
   useEffect(() => {
-    setTax(subTotal * TAX_RATE);
-    sumTotal(subTotal, tax);
-  }, [subTotal]);
+    const newTax = subTotal * TAX_RATE;
+    const newTotal = subTotal * (1 + TAX_RATE);
+    setTax(newTax);
+    setTotal(newTotal);
+    displayTotal(newTotal);
+  }, [subTotal, displayTotal]);
 
   return (
     <div className="summary">

@@ -20,6 +20,7 @@ const App = () => {
     .reduce((sum, cost) => {
       return sum + cost;
     });
+
   const [cartObj, setCartObj] = useState({
     totalQuantity: startingQty,
     subTotal: startingCost,
@@ -63,11 +64,7 @@ const App = () => {
             Proceed to Checkout
           </a>
         </div>
-        <ShoppingCart
-          calcCart={calcCart}
-          startingCost={startingCost}
-          startingQty={startingQty}
-        />
+        <ShoppingCart calcCart={calcCart} />
       </div>
       <Summary
         subTotal={cartObj.subTotal}
