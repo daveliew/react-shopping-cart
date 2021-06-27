@@ -25,10 +25,26 @@ const App = () => {
     subTotal: startingCost,
   });
 
-  const getCartStatus = (newQty, newCost) => {
+  const calcCart = (arr) => {
+    const newQty = arr
+      .map((item) => {
+        return item.quantityInCart;
+      })
+      .reduce((sum, qty) => {
+        return sum + qty;
+      });
+
+    const newCost = arr
+      .map((item) => {
+        return item.cost;
+      })
+      .reduce((sum, cost) => {
+        return sum + cost;
+      });
+
     setCartObj({
-      totalQuantity: cartObj.totalQuantity + newQty,
-      subTotal: cartObj.subTotal + newCost,
+      totalQuantity: newQty,
+      subTotal: newCost,
     });
   };
 
@@ -48,7 +64,7 @@ const App = () => {
           </a>
         </div>
         <ShoppingCart
-          getCartStatus={getCartStatus}
+          calcCart={calcCart}
           startingCost={startingCost}
           startingQty={startingQty}
         />
