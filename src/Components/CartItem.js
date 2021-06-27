@@ -1,20 +1,12 @@
-import React, { useState } from "react";
-import itemsInCart from "../Data/itemsInCart";
+import React from "react";
 
 const CartItem = (props) => {
-  const [currQty, setCurrQty] = useState(props.quantityInCart);
-  const [currCost, setCurrCost] = useState(props.cost);
-
   const handleAdd = () => {
-    props.addItem(props.id, currQty);
-    props.addCost(props.id, currCost);
-    setCurrQty((prevState) => prevState + 1);
-    setCurrCost((prevState) => prevState + props.cost);
+    props.addItem(props.id);
   };
 
-  const handleRemove = (index) => {
-    props.removeItem((props.id, currQty));
-    setCurrQty((prevState) => prevState - 1);
+  const handleRemove = () => {
+    props.removeItem(props.id);
   };
 
   return (
@@ -25,7 +17,7 @@ const CartItem = (props) => {
         <span onClick={handleRemove} className="circle">
           -
         </span>
-        <span className="pad-left pad-right">{currQty}</span>
+        <span className="pad-left pad-right">{props.quantityInCart}</span>
         <span onClick={handleAdd} className="circle">
           +
         </span>

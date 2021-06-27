@@ -5,7 +5,7 @@ import itemsInCart from "./Data/itemsInCart";
 
 const App = () => {
   const TAX_RATE = 0.07;
-  const startingItems = itemsInCart
+  const startingQty = itemsInCart
     .map((item) => {
       return item.quantityInCart;
     })
@@ -13,7 +13,7 @@ const App = () => {
       return sum + qty;
     });
 
-  const startingPrice = itemsInCart
+  const startingCost = itemsInCart
     .map((item) => {
       return item.cost;
     })
@@ -22,17 +22,19 @@ const App = () => {
     });
 
   const [cartObj, setCartObj] = useState({
-    tax: startingPrice * TAX_RATE,
-    subTotal: startingPrice,
-    total: startingPrice * (1 + TAX_RATE),
-    totalQuantity: startingItems,
+    tax: startingCost * TAX_RATE,
+    subTotal: startingCost,
+    total: startingCost * (1 + TAX_RATE),
+    totalQuantity: startingQty,
   });
 
-  const getCartQty = (amt) => {
-    let newSubTotal = { ...cartObj };
-    newSubTotal.totalQuantity += amt;
-    setCartObj(newSubTotal);
-    console.log(cartObj);
+  const getCartStatus = (cartItem) => {
+    setCartObj({
+      tax: cartItem.cost * TAX_RATE,
+      subTotal: cartItem.cost,
+      total: cartItem.cost * (1 + TAX_RATE),
+      totalQuantity: cartItem.quantityInCart,
+    });
   };
 
   return (
@@ -47,10 +49,10 @@ const App = () => {
           </a>
         </div>
         <ShoppingCart
-          getCartQty={getCartQty}
-          cartStatus={itemsInCart}
-          startingPrice={startingPrice}
-          startingItems={startingItems}
+          getCartStatus={getCartStatus}
+          startingCart={itemsInCart}
+          startingCost={startingCost}
+          startingQty={startingQty}
         />
       </div>
       <Summary
