@@ -18,9 +18,17 @@ const ShoppingCart = ({ getCartStatus, startingCost, startingQty }) => {
     setCart(newArr);
   };
 
-  const removeItem = (subTotal) => {
-    if (cart.quantityInCart > 1) {
-      console.log("ok");
+  const removeItem = (index) => {
+    if (cart[index].quantityInCart > 1) {
+      let newArr = [...cart];
+      let currCost = newArr[index].cost;
+      let currQty = newArr[index].quantityInCart;
+
+      currCost -= itemsInCart[index].cost;
+      currQty -= 1;
+      newArr[index] = { ...newArr[index], quantityInCart: currQty };
+      newArr[index] = { ...newArr[index], cost: currCost };
+      setCart(newArr);
     }
   };
 
